@@ -1,0 +1,3 @@
+5.38.11 >> 
+> app.use() its used for configuration and middlewares
+> npm i cors cookie-parser
