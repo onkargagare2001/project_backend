@@ -1,3 +1,82 @@
 5.38.11 >> 
 > app.use() its used for configuration and middlewares
 > npm i cors cookie-parser
+
+
+6.37.41>>
+> npm i mongoose-aggregate-paginate-v2
+
+> bcrypt and bcryptjs 
+
+> JWT tokens(jsonwebtoken)
+  Header , payload and verification signature are three parts of token.
+
+> npm i bcrypt jsonwebtoken
+
+6.45 >>
+> pre hook
+
+7.6 >>
+>file upload
+>cloudinary
+upload image via local path to cloudinary
+
+7.33 >>
+> multer is middleware 
+
+7.59>>
+> Headers,cors
+> Http methods
+  Get,Put Post Delete commonly used. and sometimes patch also used.
+
+8.07>>
+> Http status 
+> 1XX  > info
+> 2XX  > success
+> 3XX  > Redirection to another location
+> 4XX  >client error > client is trying to get source which is either not available or user is not authorized to use that resource.
+> 5XX  >Server error
+
+
+ import { v2 as cloudinary } from 'cloudinary';
+
+(async function() {
+
+    // Configuration
+    cloudinary.config({ 
+        cloud_name: 'dizmbzdqx', 
+        api_key: '261474833324614', 
+        api_secret: '<your_api_secret>' // Click 'View API Keys' above to copy your API secret
+    });
+    
+    // Upload an image
+     const uploadResult = await cloudinary.uploader
+       .upload(
+           'https://res.cloudinary.com/demo/image/upload/getting-started/shoes.jpg', {
+               public_id: 'shoes',
+           }
+       )
+       .catch((error) => {
+           console.log(error);
+       });
+    
+    console.log(uploadResult);
+    
+    // Optimize delivery by resizing and applying auto-format and auto-quality
+    const optimizeUrl = cloudinary.url('shoes', {
+        fetch_format: 'auto',
+        quality: 'auto'
+    });
+    
+    console.log(optimizeUrl);
+    
+    // Transform the image: auto-crop to square aspect_ratio
+    const autoCropUrl = cloudinary.url('shoes', {
+        crop: 'auto',
+        gravity: 'auto',
+        width: 500,
+        height: 500,
+    });
+    
+    console.log(autoCropUrl);    
+})();
